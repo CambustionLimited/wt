@@ -179,24 +179,29 @@ void StaticReply::reset(const Wt::EntryPoint *ep)
     return;
   }
 
-  /*
-   * Add headers for caching, but not for IE since it in fact makes it
-   * cache less (images)
-   */
-  const Request::Header *ua = request_.getHeader("User-Agent");
+  // /*
+  //  * Add headers for caching, but not for IE since it in fact makes it
+  //  * cache less (images)
+  //  */
+  // const Request::Header *ua = request_.getHeader("User-Agent");
 
-  if (!ua || !ua->value.contains("MSIE")) {
-    addHeader("Cache-Control", "max-age=3600");
-    if (!etag.empty())
-      addHeader("ETag", etag);
+  // if (!ua || !ua->value.contains("MSIE")) {
+  //   addHeader("Cache-Control", "max-age=3600");
+  //   if (!etag.empty())
+  //     addHeader("ETag", etag);
 
-    addHeader("Expires", computeExpires());
-  } else {
-    // We experienced problems with some swf files if they are cached in IE.
-    // Therefore, don't cache swf files on IE.
-    if (boost::iequals(extension_, "swf"))
-      addHeader("Cache-Control", "no-cache");
-  }
+  //   addHeader("Expires", computeExpires());
+  // } else {
+  //   // We experienced problems with some swf files if they are cached in IE.
+  //   // Therefore, don't cache swf files on IE.
+  //   if (boost::iequals(extension_, "swf"))
+  //     addHeader("Cache-Control", "no-cache");
+  // }
+
+  // see https://redmine.webtoolkit.eu/boards/2/topics/7174
+  addHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  addHeader("Pragma", "no-cache");
+  addHeader("Expires", "0");
 
   if (!modifiedDate.empty())
     addHeader("Last-Modified", modifiedDate);
