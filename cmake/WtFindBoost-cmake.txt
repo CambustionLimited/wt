@@ -13,7 +13,6 @@
 # - BOOST_FS_LIB
 # - BOOST_REGEX_LIB
 # - BOOST_PO_LIB
-# - BOOST_SIGNALS_LIB
 # - BOOST_SYSTEM_LIB
 # - BOOST_THREAD_LIB (only if BOOST_MT_FOUND)
 # Boost will try to find the same kind (mt or not) of library for all three
@@ -62,7 +61,6 @@ SET(Boost_COMPONENTS
     date_time
     regex
     program_options
-    signals
     system
     filesystem
     thread
@@ -89,7 +87,6 @@ IF (Boost_FOUND)
   SET(BOOST_FS_LIB ${Boost_FILESYSTEM_LIBRARY})
   SET(BOOST_REGEX_LIB ${Boost_REGEX_LIBRARY})
   SET(BOOST_PO_LIB ${Boost_PROGRAM_OPTIONS_LIBRARY})
-  SET(BOOST_SIGNALS_LIB ${Boost_SIGNALS_LIBRARY})
   SET(BOOST_SYSTEM_LIB ${Boost_SYSTEM_LIBRARY})
   SET(BOOST_THREAD_LIB ${Boost_THREAD_LIBRARY})
   IF(NOT WT_NO_BOOST_RANDOM)
@@ -110,7 +107,6 @@ IF (Boost_FOUND)
         ${Boost_THREAD_LIBRARY}
         ${BOOST_RANDOM_LIB}
         ${Boost_REGEX_LIBRARY}
-        ${Boost_SIGNALS_LIBRARY}
         ${Boost_SYSTEM_LIBRARY}
         ${Boost_FILESYSTEM_LIBRARY}
         ${Boost_DATE_TIME_LIBRARY})
